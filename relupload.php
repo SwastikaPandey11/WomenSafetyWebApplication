@@ -1,3 +1,27 @@
+<?php
+session_start();
+$servername="localhost";
+$username="root";
+$passsword="12#itlamshiv";
+$dbname="women";
+$_SESSION['t'] =$_GET['username'];
+$conn=mysqli_connect($servername,$username,$passsword,$dbname);
+if((isset($_GET["rellog"])))
+{
+  $username = $_GET['username'];  
+  $name=$_GET['name'];
+  $sql="SELECT * FROM family where User_ID='$username' AND name='$name'";
+  $result = mysqli_query($conn,$sql);
+  $check = mysqli_fetch_array($result);
+  if(isset($check)){
+    echo '<script>alert("Successfully Logged in!")</script>';
+  }
+  else{
+   exit();
+   }
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -88,7 +112,7 @@ font-family: 'Chewy';
     <h2 class="w3" id="hd"><b>Women Safety</b></h2>
   </div>
   <div class="w3-bar-block">
-    <a href="loginpage.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">REGISTER</a> 
+    <a href="exit.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white" id="us">LOG OUT</a> 
     <a href="right.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">KNOW ABOUT YOUR RIGHTS</a> 
     <hr>
     <hr>
@@ -133,13 +157,19 @@ font-family: 'Chewy';
       <p style="float:right;position:relative;top:-300px;left:600px">As the number of crimes against women continues to increase daily, women's safety has become an utmost priority. Defense isn’t the only measure that can be enough against this increasing abuse. The safety application will serve the purpose of providing security and safety to women so that they never feel helpless while facing such social challenges.</p>
     </div>
     <div class="w3-row" style="position:relative;top:-150px">
-      <a href="loginpage.html"><div id="red" style="float:left">
+      <a href="red.php?id=<?php 
+                            echo $_SESSION['t'];                        
+                            ?>"><div id="red" style="float:left">
         <p style="position:relative;top:40px;left:70px">RED</p>
       </div></a>
-      <a href="loginpage.html"><div id="green" style="float:left">
+      <a href="green.php?id=<?php 
+                            echo $_SESSION['t'];                        
+                            ?>"><div id="green" style="float:left">
         <p style="position:relative;top:40px;left:70px">GREEN</p>
       </div></a>
-      <a href="loginpage.html"><div id="orange" style="float:left">
+      <a href="orange.php?id=<?php 
+                            echo $_SESSION['t'];                        
+                            ?>"><div id="orange" style="float:left">
         <p style="position:relative;top:40px;left:70px">ORANGE</p>
       </div></a>
     </div>
@@ -159,7 +189,9 @@ font-family: 'Chewy';
   </div>
 
   </div>
+<?php
 
+?>
  
 
   <!-- Services -->
@@ -187,7 +219,7 @@ font-family: 'Chewy';
     <div class="w3-col m4 w3-margin-bottom">
       <div class="w3-light-grey">
         <img src="https://cdn.iconscout.com/icon/free/png-256/directions-1782209-1512759.png" alt="route" style="width:100%">
-       <a href="safest.html"><div class="w3-container">
+       <a href="#"><div class="w3-container">
           <h3>Safest Route</h3>
           <p>By routing the safest place to the victim, help them to reach that place and ensure their safety.</p>
           <input type="submit" value="safest Route">
@@ -224,7 +256,7 @@ font-family: 'Chewy';
     <h1 class="w3-xxxlarge w3-text-black"><b>Contact Us.</b></h1>
     <hr style="width:50px;border:5px solid grey" class="w3-round">
     <p>For more information Contact us anytime:)</p>
-    <form  target="_blank">
+    <form  method="post" >
       <div class="w3-section">
         <label>Name</label>
         <input class="w3-input w3-border" type="text" name="Name" required>
@@ -237,13 +269,25 @@ font-family: 'Chewy';
         <label>Message</label>
         <input class="w3-input w3-border" type="text" name="Message" required>
       </div>
-      <button type="submit" class="w3-button w3-block w3-padding-large w3-grey w3-margin-bottom">Send Message</button>
+      <button type="submit" class="w3-button w3-block w3-padding-large w3-grey w3-margin-bottom" name="consub">Send Message</button>
     </form>  
   </div>
-
 <!-- End page content -->
 </div>
+<?php
+if (isset($_POST["consub"]))
+{
 
+$name = $_POST['Name']; 
+$email= $_POST['Email']; 
+$message=$_POST['Message'];
+
+$sql="INSERT INTO contact(name,email,message) VALUES('$name','$email','$message')";
+if (mysqli_query($conn, $sql)) {
+  echo '<script>alert("Your Message has been send!!")</script>';
+} 
+}
+?>
 <!-- W3.CSS Container -->
 <div class="w3-light-grey w3-container w3-padding-32" style="margin-top:75px;padding-right:58px"><p class="w3-right">Follow us:abc._def</p></div>
 

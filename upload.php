@@ -1,3 +1,75 @@
+<?php
+session_start();
+$_SESSION['user'] =$_GET['username'];
+$e=$_GET['username'];
+$servername="localhost";
+$username="root";
+$passsword="12#itlamshiv";
+$dbname="women";
+$conn=mysqli_connect($servername,$username,$passsword,$dbname);
+if (isset($_GET["sign"]))
+{
+
+$us= $_GET['username']; 
+$dob= $_GET['dob']; 
+$pass=$_GET['pass'];
+$email = $_GET['email']; 
+$phno= $_GET['phno']; 
+$name=$_GET['name'];
+$address= $_GET['address']; 
+$reltel= $_GET['reltel']; 
+$reladdress=$_GET['reladdress'];
+$relation = $_GET['relation']; 
+$relname= $_GET['relname']; 
+$sql="INSERT INTO user(Email_ID,DOB,Phone_no,User_ID,password,Name,Address) VALUES('$email','$dob','$phno','$us','$pass','$name','$address')";
+$sql1="INSERT INTO family(Phone_no,User_ID,Address,relation,Name) VALUES('$reltel','$us','$reladdress','$relation','$relname')";
+if (mysqli_query($conn, $sql)&&mysqli_query($conn, $sql1)) {
+  echo '<script type="text/javascript">alert("'.$name.'");</script>';
+} 
+else{
+exit();
+}
+fun($us);
+} 
+elseif((isset($_GET["userlog"])))
+{
+  $us = $_GET['username'];  
+  $pass=$_GET['pass'];
+  $sql="SELECT * FROM user where User_ID='$us' AND password='$pass'";
+  
+  $result = mysqli_query($conn,$sql);
+  $check = mysqli_fetch_array($result);
+  if(isset($check)){
+    $r="Welcome"." ".$us;
+    echo '<script type="text/javascript">alert("'.$r.'");</script>';
+  }
+  else{
+   exit();
+   }
+   fun($us);
+}
+elseif((isset($_GET["rellog"])))
+{
+  $us = $_GET['username'];  
+  $name=$_GET['name'];
+  $sql="SELECT * FROM family where User_ID='$us' AND name='$name'";
+  $result = mysqli_query($conn,$sql);
+  $check = mysqli_fetch_array($result);
+  if(isset($check)){
+    $r="Welcome"." ".$us;
+    echo '<script type="text/javascript">alert("'.$r.'");</script>';
+  }
+  else{
+   exit();
+   }
+   fun($us);
+}
+function fun($us)
+{
+  $_SESSION['user'] = $us;
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -58,20 +130,18 @@ font-family: 'Chewy';
 }
 #orange:hover{opacity:1}
 .mainn
-          {   width:500px;
+          {   width:400px;
             height:400px;
             background-color:white;
             z-index:3;
-            float:right;
-            position:relative;
-            left:-20px;
-            top:-300px;
             border-radius: 5px;
             background-image:url("https://wallpaperaccess.com/full/3025501.jpg") ;
             border:2px firebrick solid;
             opacity:0.9;
             font-family: 'Amatic SC';
             font-size:20px;
+            position:relative;
+            left:-70px;
           }
           #g
            {
@@ -88,18 +158,28 @@ font-family: 'Chewy';
     <h2 class="w3" id="hd"><b>Women Safety</b></h2>
   </div>
   <div class="w3-bar-block">
-    <a href="loginpage.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">REGISTER</a> 
+    <a href="exit.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white" id="us">LOG OUT</a> 
     <a href="right.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">KNOW ABOUT YOUR RIGHTS</a> 
     <hr>
     <hr>
     <h2>STORY TIME</h2>
-    <form>
-      <textarea rows="4" cols="20"></textarea>
+    <form method="post">
+      <textarea rows="4" cols="20" name="text"></textarea>
       <br>
-      <input type="submit" value="Upload">
+      <input type="submit" value="Upload" name="story">
     </form>
     
-    
+    <?php
+    if (isset($_POST["story"]))
+    {
+      $us=$_SESSION['user'];
+      $story=$_POST['text'];
+      $sql="INSERT INTO story(User_ID,story) VALUES('$us','$story')";
+      if (mysqli_query($conn, $sql)) {
+        echo '<script>alert("Successfully added!")</script>';
+      }
+    }
+    ?>
     <hr>
     <hr>
   </div>
@@ -133,16 +213,24 @@ font-family: 'Chewy';
       <p style="float:right;position:relative;top:-300px;left:600px">As the number of crimes against women continues to increase daily, women's safety has become an utmost priority. Defense isn’t the only measure that can be enough against this increasing abuse. The safety application will serve the purpose of providing security and safety to women so that they never feel helpless while facing such social challenges.</p>
     </div>
     <div class="w3-row" style="position:relative;top:-150px">
-      <a href="loginpage.html"><div id="red" style="float:left">
+      <a href="red.php?id=<?php 
+                            echo $_SESSION['user'];                        
+                            ?>"
+      name="red"><div id="red" style="float:left">
         <p style="position:relative;top:40px;left:70px">RED</p>
       </div></a>
-      <a href="loginpage.html"><div id="green" style="float:left">
+      <a href="green.php?id=<?php 
+                            echo $_SESSION['user'];                        
+                            ?>"  name="green"><div id="green" style="float:left">
         <p style="position:relative;top:40px;left:70px">GREEN</p>
       </div></a>
-      <a href="loginpage.html"><div id="orange" style="float:left">
+      <a href="orange.php?id=<?php 
+                            echo $_SESSION['user'];                        
+                            ?>"  name="orange"><div id="orange" style="float:left">
         <p style="position:relative;top:40px;left:70px">ORANGE</p>
       </div></a>
     </div>
+    <br>
     <div class="mainn" >
                 
       <h2 style="text-align:center">FUNCTIONS</h2>
@@ -158,7 +246,7 @@ font-family: 'Chewy';
       <hr>
   </div>
 
-  </div>
+</div>
 
  
 
@@ -187,7 +275,9 @@ font-family: 'Chewy';
     <div class="w3-col m4 w3-margin-bottom">
       <div class="w3-light-grey">
         <img src="https://cdn.iconscout.com/icon/free/png-256/directions-1782209-1512759.png" alt="route" style="width:100%">
-       <a href="safest.html"><div class="w3-container">
+       <a href="safest.php?id=<?php 
+                            echo $_SESSION['user'];                        
+                            ?>"><div class="w3-container">
           <h3>Safest Route</h3>
           <p>By routing the safest place to the victim, help them to reach that place and ensure their safety.</p>
           <input type="submit" value="safest Route">
@@ -198,7 +288,9 @@ font-family: 'Chewy';
     <div class="w3-col m4 w3-margin-bottom">
       <div class="w3-light-grey">
         <img src="https://png.pngtree.com/png-clipart/20200701/original/pngtree-medicine-portfolio-flat-illustration-png-image_5406491.jpg" alt="shop" style="width:100%">
-        <a href="shopkeeper.html"><div class="w3-container">
+        <a href="shopkeeper.php?id=<?php 
+                            echo $_SESSION['user'];                        
+                            ?>"><div class="w3-container">
           <h3>NEAREST SHOP TO BUY MEDICINE/SANITARY NAPKINS</h3>
           <p>In case of sudden menstruation flow, this feature can help the user to reach to the nearest shop to satisfy her requirements.</p>
           <input type="submit" value="Nearest Chemist Shop">
@@ -208,7 +300,9 @@ font-family: 'Chewy';
     <div class="w3-col m4 w3-margin-bottom">
       <div class="w3-light-grey">
         <img src="https://thumbs.dreamstime.com/b/medical-logo-caduceus-72380945.jpg" alt="gyno" style="width:100%"></a>
-        <a href="gyno.html">
+        <a href="gyno.php?id=<?php 
+                            echo $_SESSION['user'];                        
+                            ?>">
         <div class="w3-container">
           <h3>DISPLAY HOSPITAL WITH GYNECOLOGISTS:</h3>
           <p>In case of any situation, emergency or normal, helps the user find gynecologists. This feature ensures that the user has the information at her fingertips all in one app.</p>
@@ -224,7 +318,7 @@ font-family: 'Chewy';
     <h1 class="w3-xxxlarge w3-text-black"><b>Contact Us.</b></h1>
     <hr style="width:50px;border:5px solid grey" class="w3-round">
     <p>For more information Contact us anytime:)</p>
-    <form  target="_blank">
+    <form  method="post" >
       <div class="w3-section">
         <label>Name</label>
         <input class="w3-input w3-border" type="text" name="Name" required>
@@ -237,13 +331,25 @@ font-family: 'Chewy';
         <label>Message</label>
         <input class="w3-input w3-border" type="text" name="Message" required>
       </div>
-      <button type="submit" class="w3-button w3-block w3-padding-large w3-grey w3-margin-bottom">Send Message</button>
+      <button type="submit" class="w3-button w3-block w3-padding-large w3-grey w3-margin-bottom" name="consub">Send Message</button>
     </form>  
   </div>
-
 <!-- End page content -->
 </div>
+<?php
+if (isset($_POST["consub"]))
+{
 
+$name = $_POST['Name']; 
+$email= $_POST['Email']; 
+$message=$_POST['Message'];
+
+$sql="INSERT INTO contact(name,email,message) VALUES('$name','$email','$message')";
+if (mysqli_query($conn, $sql)) {
+  echo '<script>alert("Your Message has been send!!")</script>';
+} 
+}
+?>
 <!-- W3.CSS Container -->
 <div class="w3-light-grey w3-container w3-padding-32" style="margin-top:75px;padding-right:58px"><p class="w3-right">Follow us:abc._def</p></div>
 
@@ -270,3 +376,6 @@ function onClick(element) {
 
 </body>
 </html>
+
+
+
