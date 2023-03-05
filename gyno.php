@@ -9,6 +9,7 @@ $us=$_GET['id'];
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
 
 <style>
 body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
@@ -16,7 +17,7 @@ body {font-size:16px;}
 .w3-half img{margin-bottom:-6px;margin-top:16px;opacity:0.8;cursor:pointer}
 .w3-half img:hover{opacity:1}
   #map {
-      height: 900px;
+      height: 500px;
       margin: 10px auto;
       width: 100%;
   }  
@@ -24,17 +25,34 @@ body {font-size:16px;}
 </style>
 </head>
 <body>
- 
+ <!--Add correct page-->
+<script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.6.1/annyang.min.js"></script>
+  <script>
+  if (annyang) {
+    // Let's define a command.
+    const commands = {
+      'home': () => {location.href="upload.php?username=<?php 
+                            echo $us;                        
+                            ?>"}
+    };
+    // Add our commands to annyang
+    annyang.addCommands(commands);
+  
+    // Start listening.
+    annyang.start();
+  }
+  </script>
 <!-- Sidebar/menu -->
-<nav class="w3-sidebar w3-blue w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar"><br>
+<nav class="w3-sidebar w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:260px;font-weight:bold;background-color:#efd0cc; font-family: 'Playfair Display';" id="mySidebar"><br>
   <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft" style="width:100%;font-size:22px">Close Menu</a>
   <div class="w3-container">
-    <h1 class="w3-padding-64"><b>Suraksha <br>Saathi</b></h1>
+    <h1 style = "font-family: 'Playfair Display';" class="w3-padding-64" ><b>Suraksha <br>Saathi</b></h1>
   </div>
   <div class="w3-bar-block">
     <a href="upload.php?username=<?php 
                             echo $us;                        
                             ?>" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Home</a>
+    <a href="#showcase" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Refresh</a>
   </div>
 </nav>
  
@@ -48,13 +66,17 @@ body {font-size:16px;}
 <div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
 
 
+
 <!-- !PAGE CONTENT! -->
 <div class="w3-main" style="margin-left:340px;margin-right:40px">
 
    
   <!-- Header -->
   <div class="w3-container" style="margin-top:80px" id="showcase">
-    <h1 class="w3-jumbo"><b>Gynecologists near you </b></h1>
+    <h1 class="w3-jumbo" style = "font-family: 'Playfair Display';" ><b>Gynecologists near you </b></h1>
+    <div>
+      <img src="hug.jpg" style="width:250px; height:250px; left:80%;top:-10px; position: absolute;">
+    </div>
     <hr style="width:50px;border:5px solid black" class="w3-round">
   </div>
  
@@ -126,10 +148,9 @@ function createMarkers(places) {
 
         var marker = new google.maps.Marker({
             map: map,
-            //icon: image,
+            icon: image,
             title: place.name,
             position: place.geometry.location
-
         });
         bounds.extend(place.geometry.location);
     }
@@ -137,7 +158,7 @@ function createMarkers(places) {
 }
 </script>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB94jUkh-vz9mGiZsRaDvGOzbwAnxlKgaU&libraries=places&callback=initMap" async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyALxPdJ-EorHsBH-2aOW4I9mM-Ym0-esDk&libraries=places&callback=initMap" async defer></script>
 
  
   <!-- Photo grid (modal) -->
@@ -175,6 +196,7 @@ function onClick(element) {
   captionText.innerHTML = element.alt;
 }
 </script>
+
 
 
 </body>
