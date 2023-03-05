@@ -22,6 +22,7 @@ if((isset($_GET["rellog"])))
 }
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,21 +35,26 @@ if((isset($_GET["rellog"])))
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
 <link href="https://fonts.googleapis.com/css2?family=Modern+Antiqua&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Chewy&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Gentium+Book+Plus:ital,wght@1,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
 <style>
 body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
-body {font-size:16px;background-color: #CEDCF6;}
+body {font-size:16px;background-color: white;}
 .w3-half img{margin-bottom:-6px;margin-top:16px;opacity:0.9;cursor:pointer;border-radius:30px}
 .w3-half img:hover{opacity:1}
 #hd
 {
- font-family:'Amatic SC';
- font-size: 70px;
-
+ font-family:'Dancing Script';
+ font-size: 60px;
+ line-height: 50px;
+ text-align:center;
+ 
 }
 #main
 {
-font-family: 'Chewy';
+font-family: 'PlayFair';
+padding-left: 110px;
 }
 #mySideBar
 {
@@ -58,8 +64,9 @@ font-family: 'Chewy';
 {
   width:200px;
   height:200px;
-  border-radius: 100px;
-  background-color: red;
+  margin-left: 20px;
+  border-radius: 50%;
+  background-color: rgb(217, 111, 111);
   opacity:0.8;
 }
 #red:hover{opacity:1}
@@ -67,8 +74,9 @@ font-family: 'Chewy';
 {
   width:200px;
   height:200px;
-  border-radius: 100px;
-  background-color: green;
+  border-radius: 50%;
+  
+  background-color:rgb(92, 189, 92);
   opacity:0.8;
 }
 #green:hover{opacity:1}
@@ -76,56 +84,106 @@ font-family: 'Chewy';
 {
   width:200px;
   height:200px;
-  border-radius: 100px;
-  background-color:orangered;
+  border-radius: 50%;
+  margin-left: 20px;
+  background-color: rgb(254, 238, 94);
   opacity:0.8;
 }
 #orange:hover{opacity:1}
 .mainn
-          {   width:500px;
-            height:400px;
-            background-color:white;
+          {   width:400px;
+            height:fit-content;
+            padding: 5px;
+            background-color:#efd0cc;
             z-index:3;
             float:right;
             position:relative;
-            left:-20px;
-            top:-300px;
+            top: -130px;
+            left: -50px;
             border-radius: 5px;
-            background-image:url("https://wallpaperaccess.com/full/3025501.jpg") ;
-            border:2px firebrick solid;
             opacity:0.9;
-            font-family: 'Amatic SC';
-            font-size:20px;
+            font-family: 'PlayFair';
+            font-size:18px;
           }
-          #g
-           {
-            padding-top:-20px;
-           }
+      
+        #box
+        {
+            position: absolute;
+            top: 300px;
+            text-align: left;
+            font-family: 'PlayFair';
+            font-size: 25px;
+        }
+        #story{
+            position: relative;
+            top: 350px;
+            left: 10px;
+            font-family: 'PlayFair';
+        }
+        #g{
+          background-color: aqua;
+        }
+        #title{
+            font-family: 'PlayFair';
+            font-size: 25px;
+        }
+        #self-love{
+          position: absolute;
+        top: -120px;
+          left: 70%;
+          height:600px;
+          width:600px;
+        }
+        .function{
+          overflow: hidden;
+          padding: 20px;
+          font-family: 'PlayFair';
+          font-size: 18px;
+        }
+        .image1{
+          height: 300px;
+          width: 100%;
+          border-top-left-radius: 9px;
+          border-top-right-radius: 9px;
+        }
 </style>
 </head>
 <body>
 
 <!-- Sidebar/menu -->
-<nav class="w3-sidebar w3-blue w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar"><br>
-  <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft" style="width:100%;font-size:22px">CLOSE MENU</a>
+<nav class="w3-sidebar w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;background-color: #efd0cc;" id="mySidebar"><br>
+  <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft" style="width:100%;font-size:22px">Close Menu</a>
   <div class="w3-container">
     <h2 class="w3" id="hd"><b>Women Safety</b></h2>
   </div>
-  <div class="w3-bar-block">
-    <a href="exit.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white" id="us">LOG OUT</a> 
-    <a href="right.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">KNOW ABOUT YOUR RIGHTS</a> 
-    <hr>
-    <hr>
-    <h2>STORY TIME</h2>
+ 
+  <div  id="box"> 
+    
+    <a href="loginpage.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white" >Register</a> 
+    <a href="right.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Know your Rights</a> 
+</div>
+
+    <div id="story">
+    <h2 id="title">Story Time</h2>
     <form>
       <textarea rows="4" cols="20"></textarea>
       <br>
       <input type="submit" value="Upload">
     </form>
-    
-    
+     <?php
+    if (isset($_POST["story"]))
+    {
+      $us=$_SESSION['user'];
+      $story=$_POST['text'];
+      $sql="INSERT INTO story(User_ID,story) VALUES('$us','$story')";
+      if (mysqli_query($conn, $sql)) {
+        echo '<script>alert("Successfully added!")</script>';
+      }
+    }
+    ?>
     <hr>
     <hr>
+
   </div>
 </nav>
 
@@ -143,9 +201,10 @@ font-family: 'Chewy';
 
   <!-- Header -->
   <div class="w3-container" style="margin-top:60px" id="showcase">
-    <h1 class="w3-jumbo" id="main"><b>SURAKSHA SAATHI</b></h1>
-    <h2 class=" w3-text-gray" style="position:relative; left:200px"><b>Together We Can.</b></h2>
-    <h2 class=" w3-text-gray" style="position:relative; left:300px"><b>It's Time to Take Action.</b></h2>
+    <h1 class="w3-jumbo" id="main"><b>Suraksha Saathi</b></h1>
+    <img id="self-love" src="background.png" alt="">
+    <h2 style="position:relative; left:200px; font-family: 'Dancing Script'; "><b>Together We Can.</b></h2>
+    <h2  style="position:relative; left:300px;font-family: 'Dancing Script';"><b>It's Time to Take Action.</b></h2>
     <hr style="width:700px;border:5px solid black" class="w3-round">
   </div>
   
@@ -173,90 +232,87 @@ font-family: 'Chewy';
         <p style="position:relative;top:40px;left:70px">ORANGE</p>
       </div></a>
     </div>
+
     <div class="mainn" >
                 
-      <h2 style="text-align:center">FUNCTIONS</h2>
-      <hr>
-      <hr>
+      <h2 style="text-align:center; font-family: 'Dancing Script';">Functions</h2>
       <p id="g"><ul>
         <li>Green mode- the location of the user is shared with the registered emergency number.</li>
         <li>Orange mode- the location of the user is shared with the registered emergency number along with a call.</li>
-        <li> Red Mode- A call to the women help centre is immediately sent along with the user’s location. An alert and the location are sent to the family members.</li>
+        <li>Red Mode- A call to the women help centre is immediately sent along with the user’s location. An alert and the location are sent to the family members.</li>
       </ul>
        </p>
-      <hr>
-      <hr>
   </div>
 
   </div>
-<?php
 
-?>
  
 
-  <!-- Services -->
-  <div class="w3-container" id="services" style=" position:relative;top:-300px">
-    <h1 class="w3-xxxlarge w3-text-black"><b>OBJECTIVES.</b></h1>
-    <hr style="width:50px;border:5px solid grey" class="w3-round">
-    <p>
-      <ul>
-      <li><b>REGISTER FAMILY MEMBER'S CONTACT DETAILS:</b> If there is any emergency, it would help us contact the family members.</li>
-      <li><b>SHARE LOCATION AND MAKE A CALL TO REGISTERED FAMILY MEMBERS AND WOMEN'S HELP CENTERS: </b>By sharing live location with family members and help centers, help us to reach the victim’s location at the earliest.</li>
-      <li><b>UPLOAD YOUR STORY:</b> By sharing their experiences/stories, it would help others to be aware of the actions to be taken in similar situations.</li> </ul></p>
-  </div>
+  
   
   <!-- Designers -->
   <div class="w3-container" id="designers" style="margin-top:50px;position:relative;top:-200px">
-    <h1 class="w3-xxxlarge w3-text-brown"><b>!!FEATURING!!</b></h1>
-    <hr style="width:50px;border:5px solid grey" class="w3-round">
-    <p>Our team aims to design a web-based application to help in providing safety for women across India. The application will have features such as finding the safest route to a place, sharing location and calling family members and emergency centres in case of an emergency, finding help in case of violence and more such features that ensure woman’s safety.
+    <h1 class="w3-xxxlarge" style="font-family: 'PlayFair'; padding-left: 210px;"><b>Find Your Way</b></h1>
+    <hr style="width:700px;border:5px solid black" class="w3-round">
+    <p style="font-family: 'PlayFair'; font-size: 18px; ">Our team aims to design a web-based application to help in providing safety for women across India. The application will have features such as finding the safest route to a place, sharing location and calling family members and emergency centres in case of an emergency, finding help in case of violence and more such features that ensure woman’s safety.
       Further, our application will also help women with their medical needs by providing locations of the nearest medical shops and hospitals with gynecologists. We also aim at expanding our application to assist in providing protection to children and senior citizens, if time permits.
     </p>
   </div>
 
   <!-- The Team -->
-  <div class="w3-row-padding w3-grayscale " style="position:relative;top:-200px">
-    <div class="w3-col m4 w3-margin-bottom">
-      <div class="w3-light-grey">
-        <img src="https://cdn.iconscout.com/icon/free/png-256/directions-1782209-1512759.png" alt="route" style="width:100%">
-       <a href="#"><div class="w3-container">
-          <h3>Safest Route</h3>
-          <p>By routing the safest place to the victim, help them to reach that place and ensure their safety.</p>
-          <input type="submit" value="safest Route">
+  <div class="w3-row-padding " style="position:relative;top:-200px">
+    <div class="w3-col m4">
+      <div style="background-color: #efd0cc; border-radius: 9px;">
+        <img src="route.gif" alt="route" class="image1" >
+       <a href="safest.php?id=<?php 
+                            echo $_SESSION['t'];                        
+                            ?>">
+<div class="function">
+          <h3 style="text-align:center;">Safest Route</h3>
+          <div style="text-align: center;">
+          <input type="submit" value="Safest Route">
+        </div>
         </div>
        </a>
       </div>
     </div>
-    <div class="w3-col m4 w3-margin-bottom">
-      <div class="w3-light-grey">
-        <img src="https://png.pngtree.com/png-clipart/20200701/original/pngtree-medicine-portfolio-flat-illustration-png-image_5406491.jpg" alt="shop" style="width:100%">
-        <a href="shopkeeper.html"><div class="w3-container">
-          <h3>NEAREST SHOP TO BUY MEDICINE/SANITARY NAPKINS</h3>
-          <p>In case of sudden menstruation flow, this feature can help the user to reach to the nearest shop to satisfy her requirements.</p>
+    <div class="w3-col m4 ">
+      <div style="background-color: #efd0cc; border-radius: 9px;">
+        <img src="medicine.gif" alt="shop" class="image1">
+        <a href="shopkeeper.php?id=<?php 
+                            echo $_SESSION['t'];                        
+                            ?>"><div class="function">
+          <h3 style="text-align:center;">Get Sanitary Napkin</h3>
+          <div style="text-align: center;">
           <input type="submit" value="Nearest Chemist Shop">
         </div>
-      </div>
-    </div>
-    <div class="w3-col m4 w3-margin-bottom">
-      <div class="w3-light-grey">
-        <img src="https://thumbs.dreamstime.com/b/medical-logo-caduceus-72380945.jpg" alt="gyno" style="width:100%"></a>
-        <a href="gyno.html">
-        <div class="w3-container">
-          <h3>DISPLAY HOSPITAL WITH GYNECOLOGISTS:</h3>
-          <p>In case of any situation, emergency or normal, helps the user find gynecologists. This feature ensures that the user has the information at her fingertips all in one app.</p>
-          <input type="submit" value=" Nearest Gynecologist Center ">
         </div>
-        </a>
       </div>
+      </div>
+    <div class="w3-col m4 ">
+      <div style="background-color: #efd0cc; border-radius: 9px;">
+        <img src="gynaecologist.gif" alt="gyno" class="image1"></a>
+         <a href="gyno.php?id=<?php 
+                            echo $_SESSION['t'];                        
+                            ?>">
+
+        <div class="function">
+          <h3 style="text-align:center;"> Gynecologist</h3>
+          <div style="text-align: center;">
+          <input type="submit" value="Gynecologist Center ">
+          </div>
+        </div>
+      </div>
+        </a>
     </div>
   </div>
 
   <!-- Contact -->
-  <div class="w3-container" id="contact" style="margin-top:75px;border:1px dotted black;position:Relative;top:-70px">
+  <div class="w3-container" id="contact" style="margin-top:50px;border:1px dotted black;position:Relative;top:-150px">
     <h1 class="w3-xxxlarge w3-text-black"><b>Contact Us.</b></h1>
-    <hr style="width:50px;border:5px solid grey" class="w3-round">
+    <hr style="width:50px;border:5px solid black" class="w3-round">
     <p>For more information Contact us anytime:)</p>
-    <form  method="post" >
+    <form  target="_blank">
       <div class="w3-section">
         <label>Name</label>
         <input class="w3-input w3-border" type="text" name="Name" required>
@@ -269,9 +325,10 @@ font-family: 'Chewy';
         <label>Message</label>
         <input class="w3-input w3-border" type="text" name="Message" required>
       </div>
-      <button type="submit" class="w3-button w3-block w3-padding-large w3-grey w3-margin-bottom" name="consub">Send Message</button>
+      <button type="submit" class="w3-button w3-block w3-padding-large w3-grey w3-margin-bottom">Send Message</button>
     </form>  
   </div>
+
 <!-- End page content -->
 </div>
 <?php
@@ -288,8 +345,9 @@ if (mysqli_query($conn, $sql)) {
 } 
 }
 ?>
+
 <!-- W3.CSS Container -->
-<div class="w3-light-grey w3-container w3-padding-32" style="margin-top:75px;padding-right:58px"><p class="w3-right">Follow us:abc._def</p></div>
+<div class="w3-container w3-padding-32" style="background-color: black;"><p style="color: #efd0cc;position:relative;left: 50%; font-size: 18px;">Made with love: hello_world_ADS</p></div>
 
 <script>
 // Script to open and close sidebar
